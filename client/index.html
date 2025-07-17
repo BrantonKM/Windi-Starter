@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Develon & ACE Trucks - Premium heavy machinery for sale. Explore excavators, cranes, and rollers with flexible financing options.">
+  <meta name="keywords" content="Develon trucks, ACE machinery, excavators, cranes, construction equipment, Kenya">
+  <title>Develon & ACE Trucks | Heavy Machinery Sales & Rentals</title>
+  <link rel="preload" href="images/heavy-machine.jpg" as="image">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --primary-black: #000000;
+      --secondary-black: #1a1a1a;
+      --accent-orange: #ff8c00;
+      --rich-orange: #ff4500;
+      --light-gray: #f4f4f4;
+      --dark-gray: #333333;
+      --text-gray: #666;
+      --white: #ffffff;
+      --focus-outline: 3px solid #ff8c00;
+    }
+    [data-theme="dark"] {
+      --primary-black: #181818;
+      --secondary-black: #232323;
+      --light-gray: #232323;
+      --dark-gray: #f4f4f4;
+      --text-gray: #aaa;
+      --white: #fff;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
+      background: var(--light-gray);
+      color: var(--primary-black);
+      overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
+    }
+    header.truck-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--accent-orange);
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--accent-orange);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    header nav {
+      display: flex;
+      gap: 3rem;
+      transition: max-height 0.4s cubic-bezier(.25,.8,.25,1);
+    }
+    header nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem 0;
+      transition: color 0.3s ease;
+    }
+    header nav a:focus {
+      outline: var(--focus-outline);
+      outline-offset: 2px;
+    }
+    header nav a:hover {
+      color: var(--accent-orange);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1100;
+      padding: 8px;
+    }
+    .hamburger span {
+      width: 30px;
+      height: 3px;
+      background: var(--accent-orange);
+      border-radius: 2px;
+      transition: all 0.3s;
+      display: block;
+    }
+    .theme-toggle {
+      margin-left: 2rem;
+      background: none;
+      border: 2px solid var(--accent-orange);
+      color: var(--accent-orange);
+      border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    .theme-toggle:focus {
+      outline: var(--focus-outline);
+    }
+    main {
+      padding-top: 100px;
+    }
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-black) 0%, var(--secondary-black) 100%);
+    }
+    .hero-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      opacity: 0.4;
+      transition: transform 1.5s cubic-bezier(.25,.8,.25,1);
+      will-change: transform;
+    }
+    .hero-caption {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: var(--white);
+      max-width: 800px;
+      padding: 0 2rem;
+    }
+    .hero-caption h2,
+    .hero-caption p {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s forwards;
+    }
+    .hero-caption h2 {
+      animation-delay: 0.2s;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      color: var(--accent-orange);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .hero-caption p {
+      animation-delay: 0.6s;
+      font-size: 1.3rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dark-gray);
+      margin-bottom: 2rem;
+    }
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .catalog {
+      padding: 4rem 5% 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s cubic-bezier(.25,.8,.25,1);
+    }
+    .catalog.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .catalog h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: 4rem;
+      color: var(--primary-black);
+      letter-spacing: 0.02em;
+      position: relative;
+    }
+    .catalog h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--accent-orange);
+    }
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+    .item {
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      animation: cardFadeIn 0.7s forwards;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .catalog-grid .item:nth-child(1) { animation-delay: 0.1s; }
+    .catalog-grid .item:nth-child(2) { animation-delay: 0.2s; }
+    .catalog-grid .item:nth-child(3) { animation-delay: 0.3s; }
+    .catalog-grid .item:nth-child(4) { animation-delay: 0.4s; }
+    .catalog-grid .item:nth-child(5) { animation-delay: 0.5s; }
+    .catalog-grid .item:nth-child(6) { animation-delay: 0.6s; }
+    .catalog-grid .item:nth-child(7) { animation-delay: 0.7s; }
+    .catalog-grid .item:nth-child(8) { animation-delay: 0.8s; }
+    .catalog-grid .item:nth-child(9) { animation-delay: 0.9s; }
+    .catalog-grid .item:nth-child(10) { animation-delay: 1s; }
+    @keyframes cardFadeIn {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    .item:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+    }
+    .item-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--light-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      transition: transform 0.4s ease;
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards;
+      background: var(--light-gray);
+    }
+    .item:hover img {
+      transform: scale(1.05);
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    .item-content {
+      padding: 1.5rem 1.8rem 2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .item-content p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+      color: var(--primary-black);
+    }
+    .item-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent-orange);
+      margin-bottom: 1rem;
+    }
+    .financing-options {
+      font-size: 0.95rem;
+      color: var(--dark-gray);
+    }
+    .financing-options strong {
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .financing-options ul {
+      padding-left: 1.2rem;
+      margin: 0;
+    }
+    .financing-options li {
+      list-style: disc;
+      margin-bottom: 0.2rem;
+    }
+    .inquiry-btn {
+      padding: 0.8rem;
+      background: var(--accent-orange);
+      color: var(--primary-black);
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 1rem;
+    }
+    .inquiry-btn:hover {
+      background: var(--rich-orange);
+    }
+    #contact {
+      background: var(--primary-black);
+      color: var(--white);
+      padding: 6rem 5% 6rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s cubic-bezier(.25,.8,.25,1);
+    }
+    #contact.visible {
+      opacity: 1;
+      transform: none;
+    }
+    #contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--accent-orange);
+      margin-bottom: 3rem;
+    }
+    #contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    #contact input,
+    #contact textarea {
+      padding: 1.2rem;
+      border: 1px solid var(--accent-orange);
+      background: transparent;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    }
+    #contact input::placeholder,
+    #contact textarea::placeholder {
+      color: var(--text-gray);
+    }
+    #contact input:focus,
+    #contact textarea:focus {
+      outline: var(--focus-outline);
+      border-color: var(--rich-orange);
+      box-shadow: 0 0 20px rgba(255, 140, 0, 0.2);
+    }
+    #contact button {
+      padding: 1.2rem 3rem;
+      background: var(--accent-orange);
+      color: var(--primary-black);
+      border: none;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+      margin-top: 1rem;
+    }
+    #contact button:focus {
+      outline: var(--focus-outline);
+    }
+    #contact button:hover {
+      background: var(--rich-orange);
+      transform: translateY(-2px);
+    }
+    .form-feedback {
+      color: var(--accent-orange);
+      font-weight: 500;
+      margin-top: 1rem;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .form-feedback.visible {
+      opacity: 1;
+    }
+    .form-feedback.success {
+      color: #4CAF50;
+    }
+    .form-feedback.error {
+      color: #F44336;
+    }
+    footer.truck-footer {
+      background: var(--primary-black);
+      color: var(--white);
+      padding: 4rem 5% 2rem;
+      text-align: center;
+      border-top: 3px solid var(--accent-orange);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    }
+    .footer-links a:focus {
+      outline: var(--focus-outline);
+    }
+    .footer-links a:hover {
+      color: var(--accent-orange);
+    }
+    .social-media {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .social-media a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary-black);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
+      text-decoration: none;
+    }
+    .social-media a:hover,
+    .social-media a:focus {
+      background: var(--accent-orange);
+      transform: scale(1.1);
+      outline: none;
+    }
+    .social-media svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--accent-orange);
+      transition: fill 0.3s ease;
+    }
+    .social-media a:hover svg,
+    .social-media a:focus svg {
+      fill: var(--primary-black);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    @media (max-width: 768px) {
+      header.truck-header {
+        padding: 1rem 3%;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      header nav {
+        flex-direction: column;
+        gap: 1.5rem;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.97);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        padding: 2rem 0;
+      }
+      header nav.active {
+        display: flex;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .hero-caption h2 {
+        font-size: 2.5rem;
+      }
+      .catalog {
+        padding: 4rem 3%;
+      }
+      .catalog-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      header nav a {
+        font-size: 0.85rem;
+        padding: 0.5rem 3%;
+      }
+      .footer-links {
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="truck-header">
+    <div class="logo">Develon & ACE Trucks</div>
+    <div class="hamburger" tabindex="0" aria-label="Toggle navigation" onclick="toggleMenu()" onkeypress="if(event.key==='Enter'){toggleMenu();}">
+      <span></span><span></span><span></span>
+    </div>
+    <nav>
+      <a href="#trucks">Inventory</a>
+      <a href="#contact">Contact</a>
+      <a href="about.html">About</a>
+      <a href="financing.html">Financing</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Toggle dark/light mode" onclick="toggleTheme()" title="Toggle dark/light mode">🌓</button>
+  </header>
+  <main>
+    <section class="hero">
+      <img 
+        src="images/heavy-machine.jpg" 
+        srcset="images/heavy-machine-small.jpg 480w, images/heavy-machine.jpg 1200w"
+        sizes="(max-width: 600px) 480px, 1200px"
+        alt="Develon excavator and ACE trucks at a construction site" 
+        class="hero-img" 
+        id="hero-img" 
+        loading="eager" 
+      />
+      <div class="hero-caption">
+        <h2>Powerful Machinery for Every Job</h2>
+        <p>Premium Develon & ACE Trucks with Flexible Financing</p>
+      </div>
+    </section>
+    <section id="trucks" class="catalog">
+      <h2>Our Inventory</h2>
+      <div class="catalog-grid">
+        <div class="item">
+          <div class="item-image">
+            <img src="images/Attachment.jpg" alt="Develon Excavator Attachment" loading="lazy" />
+          </div>
+          <div class="item-content">
+            <p>Develon Excavator Attachment</p>
+            <div class="item-price">$85,000</div>
+            <div class="financing-options" aria-label="Financing options">
+              <strong>Financing Options:</strong>
+              <ul>
+                <li>Bank Financing (5% APR)</li>
+                <li>Cash Discount (5% Off)</li>
+                <li>Lease-to-Own</li>
+              </ul>
+            </div>
+            <button class="inquiry-btn" aria-label="Inquire about this attachment">Request Details</button>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-image">
+            <img src="images/Cranes1.jpg" alt="ACE 35-Ton Crane" loading="lazy" />
+          </div>
+          <div class="item-content">
+            <p>ACE 35-Ton Crane</p>
+            <div class="item-price">$90,000</div>
+            <div class="financing-options" aria-label="Financing options">
+              <strong>Financing Options:</strong>
+              <ul>
+                <li>Bank Financing (5% APR)</li>
+                <li>Cash Discount (5% Off)</li>
+                <li>Lease-to-Own</li>
+              </ul>
+            </div>
+            <button class="inquiry-btn" aria-label="Inquire about ACE 35-Ton Crane">Request Details</button>
+          </div>
+        </div>
+                <div class="item">
+          <div class="item-image">
+            <img src="images/Cranes1.jpg" alt="ACE 35-Ton Crane" loading="lazy" />
+          </div>
+          <div class="item-content">
+            <p>ACE 35-Ton Crane</p>
+            <div class="item-price">$90,000</div>
+            <div class="financing-options" aria-label="Financing options">
+              <strong>Financing Options:</strong>
+              <ul>
+                <li>Bank Financing (5% APR)</li>
+                <li>Cash Discount (5% Off)</li>
+                <li>Lease-to-Own</li>
+              </ul>
+            </div>
+            <button class="inquiry-btn" aria-label="Inquire about ACE 35-Ton Crane">Request Details</button>
+          </div>
+        </div>
+                <div class="item">
+          <div class="item-image">
+            <img src="images/Cranes1.jpg" alt="ACE 35-Ton Crane" loading="lazy" />
+          </div>
+          <div class="item-content">
+            <p>ACE 35-Ton Crane</p>
+            <div class="item-price">$90,000</div>
+            <div class="financing-options" aria-label="Financing options">
+              <strong>Financing Options:</strong>
+              <ul>
+                <li>Bank Financing (5% APR)</li>
+                <li>Cash Discount (5% Off)</li>
+                <li>Lease-to-Own</li>
+              </ul>
+            </div>
+            <button class="inquiry-btn" aria-label="Inquire about ACE 35-Ton Crane">Request Details</button>
+          </div>
+        </div>
+                <div class="item">
+          <div class="item-image">
+            <img src="images/Cranes1.jpg" alt="ACE 35-Ton Crane" loading="lazy" />
+          </div>
+          <div class="item-content">
+            <p>ACE 35-Ton Crane</p>
+            <div class="item-price">$90,000</div>
+            <div class="financing-options" aria-label="Financing options">
+              <strong>Financing Options:</strong>
+              <ul>
+                <li>Bank Financing (5% APR)</li>
+                <li>Cash Discount (5% Off)</li>
+                <li>Lease-to-Own</li>
+              </ul>
+            </div>
+            <button class="inquiry-btn" aria-label="Inquire about ACE 35-Ton Crane">Request Details</button>
+          </div>
+        </div>
+                <div class="item">
+          <div class="item-image">
+            <img src="images/Cranes1.jpg" alt="ACE 35-Ton Crane" loading="lazy" />
+          </div>
+          <div class="item-content">
+            <p>ACE 35-Ton Crane</p>
+            <div class="item-price">$90,000</div>
+            <div class="financing-options" aria-label="Financing options">
+              <strong>Financing Options:</strong>
+              <ul>
+                <li>Bank Financing (5% APR)</li>
+                <li>Cash Discount (5% Off)</li>
+                <li>Lease-to-Own</li>
+              </ul>
+            </div>
+            <button class="inquiry-btn" aria-label="Inquire about ACE 35-Ton Crane">Request Details</button>
+          </div>
+        </div>
+                <div class="item">
+          <div class="item-image">
+            <img src="images/Cranes1.jpg" alt="ACE 35-Ton Crane" loading="lazy" />
+          </div>
+          <div class="item-content">
+            <p>ACE 35-Ton Crane</p>
+            <div class="item-price">$90,000</div>
+            <div class="financing-options" aria-label="Financing options">
+              <strong>Financing Options:</strong>
+              <ul>
+                <li>Bank Financing (5% APR)</li>
+                <li>Cash Discount (5% Off)</li>
+                <li>Lease-to-Own</li>
+              </ul>
+            </div>
+            <button class="inquiry-btn" aria-label="Inquire about ACE 35-Ton Crane">Request Details</button>
+          </div>
+        </div>
+                <div class="item">
+          <div class="item-image">
+            <img src="images/Cranes1.jpg" alt="ACE 35-Ton Crane" loading="lazy" />
+          </div>
+          <div class="item-content">
+            <p>ACE 35-Ton Crane</p>
+            <div class="item-price">$90,000</div>
+            <div class="financing-options" aria-label="Financing options">
+              <strong>Financing Options:</strong>
+              <ul>
+                <li>Bank Financing (5% APR)</li>
+                <li>Cash Discount (5% Off)</li>
+                <li>Lease-to-Own</li>
+              </ul>
+            </div>
+            <button class="inquiry-btn" aria-label="Inquire about ACE 35-Ton Crane">Request Details</button>
+          </div>
+        </div>
+                <div class="item">
+          <div class="item-image">
+            <img src="images/Cranes1.jpg" alt="ACE 35-Ton Crane" loading="lazy" />
+          </div>
+          <div class="item-content">
+            <p>ACE 35-Ton Crane</p>
+            <div class="item-price">$90,000</div>
+            <div class="financing-options" aria-label="Financing options">
+              <strong>Financing Options:</strong>
+              <ul>
+                <li>Bank Financing (5% APR)</li>
+                <li>Cash Discount (5% Off)</li>
+                <li>Lease-to-Own</li>
+              </ul>
+            </div>
+            <button class="inquiry-btn" aria-label="Inquire about ACE 35-Ton Crane">Request Details</button>
+          </div>
+        </div>
+        <!-- Additional product cards with the same structure -->
+      </div>
+    </section>
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <form id="contact-form" autocomplete="off" aria-label="Contact form">
+        <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name" minlength="2" />
+        <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" />
+        <input type="tel" name="phone" placeholder="Phone (Optional)" aria-label="Phone Number" />
+        <textarea name="message" rows="5" placeholder="Your Message" required aria-label="Your Message" minlength="10"></textarea>
+        <button type="submit">Send Message</button>
+        <div class="form-feedback" aria-live="polite"></div>
+      </form>
+    </section>
+  </main>
+  <footer class="truck-footer">
+    <div class="footer-links">
+      <a href="#trucks">Inventory</a>
+      <a href="#contact">Contact</a>
+      <a href="about.html">About Us</a>
+      <a href="financing.html">Financing</a>
+      <a href="terms.html">Terms</a>
+    </div>
+    <div class="social-media">
+      <a href="https://facebook.com/DevelonACEKenya" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff8c00" width="28" height="28" aria-hidden="true">
+          <path d="M22 12a10 10 0 10-11.5 9.87v-6.98h-2.7v-2.9h2.7v-2.2c0-2.67 1.6-4.15 4.05-4.15 1.17 0 2.4.21 2.4.21v2.64h-1.35c-1.33 0-1.75.83-1.75 1.68v2h3l-.48 2.9h-2.52v6.98A10 10 0 0022 12z" />
+        </svg>
+      </a>
+      <a href="https://wa.me/+254711167466" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff8c00" width="28" height="28" aria-hidden="true">
+          <path d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12a11.94 11.94 0 001.48 6.52L0 24l5.52-1.44A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12a11.94 11.94 0 00-3.48-8.52zm-8.52 17.52a8.08 8.08 0 01-4.32-1.26l-.3-.18-3.3.86.88-3.21-.2-.33a8.06 8.06 0 1111.52 0 7.94 7.94 0 01-4.58 3.12zm4.4-5.82c-.24-.12-1.44-.72-1.66-.8-.22-.08-.38-.12-.54.12s-.62.8-.76.96c-.14.16-.28.18-.52.06a6.3 6.3 0 01-1.86-1.14 7.06 7.06 0 01-1.3-1.6c-.14-.24 0-.36.1-.48.1-.1.24-.26.36-.4.12-.14.16-.24.24-.4.08-.16 0-.3-.04-.42-.12-.12-.54-1.3-.74-1.8-.2-.48-.4-.42-.54-.42h-.46a1.1 1.1 0 00-.8.36 3.4 3.4 0 00-1.14 2.7c0 1 .74 1.96.84 2.1.1.14 1.44 2.2 3.5 3.08a12.2 12.2 0 001.9.8 3.43 3.43 0 001.56.12 2.92 2.92 0 001.88-1.72c.16-.28.16-.52.12-.72-.04-.2-.22-.3-.46-.42z" />
+        </svg>
+      </a>
+      <a href="mailto:byasphine@gmail.com" aria-label="Email">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff8c00" width="28" height="28" aria-hidden="true">
+          <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18v-9l8 7 8-7v9H4z" />
+        </svg>
+      </a>
+    </div>
+    <p>&copy; 2025 Develon & ACE Trucks. Registered in Kenya.</p>
+  </footer>
+  <script>
+    // Toggle mobile menu
+    function toggleMenu() {
+      const nav = document.querySelector('header nav');
+      nav.classList.toggle('active');
+      document.querySelector('.hamburger').setAttribute('aria-expanded', nav.classList.contains('active'));
+    }
+
+    // Theme switcher
+    function toggleTheme() {
+      const theme = document.documentElement.getAttribute('data-theme');
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Load saved theme
+    (function () {
+      const storedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', storedTheme);
+    })();
+
+    // Parallax effect for hero image
+    window.addEventListener('scroll', function () {
+      const heroImg = document.getElementById('hero-img');
+      if (heroImg) {
+        heroImg.style.transform = 'translateY(' + window.scrollY * 0.2 + 'px)';
+      }
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.catalog, #contact').forEach(el => observer.observe(el));
+
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const form = e.target;
+      const formData = new FormData(form);
+      const feedback = form.querySelector('.form-feedback');
+
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        message: formData.get('message')
+      };
+
+      try {
+        const response = await fetch('http://localhost:5000/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          feedback.textContent = "✅ Message sent successfully!";
+          feedback.classList.add('success');
+          form.reset();
+        } else {
+          feedback.textContent = "❌ Submission failed.";
+          feedback.classList.add('error');
+        }
+
+      } catch (err) {
+        console.error('Error:', err);
+        feedback.textContent = "⚠️ Server error. Try again.";
+        feedback.classList.add('error');
+      }
+
+      feedback.classList.add('visible');
+      setTimeout(() => {
+        feedback.classList.remove('visible', 'success', 'error');
+      }, 5000);
+    });
+
+
+    // Product inquiry buttons
+    document.querySelectorAll('.inquiry-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const productName = button.closest('.item-content').querySelector('p').textContent;
+        window.location.href = `#contact?inquiry=${encodeURIComponent(productName)}`;
+      });
+    });
+
+    // Lazy image loading
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      img.addEventListener('load', function () {
+        this.classList.add('loaded');
+      });
+    });
+  </script>
+</body>
+</html>
