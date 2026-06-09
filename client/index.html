@@ -528,7 +528,7 @@
       <a href="about.html">About</a>
       <a href="financing.html">Financing</a>
     </nav>
-    <button class="theme-toggle" aria-label="Toggle dark/light mode" onclick="toggleTheme()" title="Toggle dark/light mode">🌓</button>
+    <button class="theme-toggle" aria-label="Toggle dark/light mode" onclick="toggleTheme()" title="Toggle dark/light mode"></button>
   </header>
   <main>
     <section class="hero">
@@ -822,17 +822,17 @@
         const result = await response.json();
 
         if (result.success) {
-          feedback.textContent = "✅ Message sent successfully!";
+          feedback.textContent = " Message sent successfully!";
           feedback.classList.add('success');
           form.reset();
         } else {
-          feedback.textContent = "❌ Submission failed.";
+          feedback.textContent = " Submission failed.";
           feedback.classList.add('error');
         }
 
       } catch (err) {
         console.error('Error:', err);
-        feedback.textContent = "⚠️ Server error. Try again.";
+        feedback.textContent = " Server error. Try again.";
         feedback.classList.add('error');
       }
 
