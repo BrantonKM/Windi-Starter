@@ -20,14 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await res.json();
 
       if (result.success) {
-        alert("✅ Message submitted successfully!");
+        alert(" Message submitted successfully!");
         form.reset();
       } else {
-        alert("❌ Failed to submit message.");
+        alert(" Failed to submit message.");
       }
     } catch (err) {
       console.error("Submission error:", err);
-      alert("⚠️ Server error. Please try again later.");
+      alert(" Server error. Please try again later.");
     }
   });
 });
